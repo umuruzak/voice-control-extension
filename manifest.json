@@ -1,0 +1,49 @@
+{
+    "manifest_version": 3,
+    "name": "Voice Control",
+    "version": "1.0",
+    "description": "Управление браузером с помощью голосовых команд",
+    "icons": {
+      "16": "/icons/mic-off-16.png",
+      "48": "/icons/mic-off-48.png",
+      "128": "/icons/mic-off-128.png"
+    },
+    "action": {
+      "default_icon": {
+        "16": "/icons/mic-off-16.png",
+        "24": "/icons/mic-off-24.png",
+        "32": "/icons/mic-off-32.png"
+      },
+      "default_title": "Voice Control",
+      "default_popup": "popup/popup.html"
+    },
+    "permissions": [
+      "activeTab",
+      "tabs",
+      "scripting",
+      "commands",
+      "storage"
+    ],
+    "host_permissions": [
+    "<all_urls>"
+    ],
+    "background": {
+      "service_worker": "/background/background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content/content.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "commands": {
+      "toggle_mic": {
+        "suggested_key": {
+          "default": "Ctrl+Space",
+          "mac": "Command+Space"
+        },
+        "description": "Включить/выключить микрофон"
+      }
+    }
+  }
